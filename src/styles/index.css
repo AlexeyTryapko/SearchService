@@ -37,10 +37,16 @@
   }
 
   .links-item {
+    margin-bottom: 1vh;
     list-style: none;
     cursor: pointer;
     padding: 10px;
     border: 1px solid #F7F7F8;
+  }
+
+  .links-item:hover {
+    border-color: #26a69a;
+    transition: border-color .5s;
   }
 
   .links-list {
@@ -76,14 +82,14 @@
   }
 
   .preset-item:hover {
-    font-size: 1.56rem;
+    transition: border-color .5s;
+    border-color: #26a69a;
   }
 
   .preset-title {
     margin: 0;
     font-size: 1.5rem;
   }
-
 
   .right-column {
     height: 100%;
