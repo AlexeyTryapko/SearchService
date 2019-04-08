@@ -2,6 +2,7 @@
 
 const data = {};
 let links = [];
+let selectedPreset = '';
 
 const linksList = document.querySelector('.links-list');
 const presetsList = document.querySelector('.presets-list');
@@ -11,6 +12,8 @@ const PresetInput = document.querySelector('.input-preset-title');
 const LinkInput = document.querySelector('.input-link');
 const addPreset = document.querySelector('.preset-add');
 const deletePreset = document.querySelector('.preset-delete');
+const addLink = document.querySelector('.link-add');
+const deleteLink = document.querySelector('.link-delete');
 
 const updateList = (data, parent, classes, clickCB) => {
   while (parent.firstChild) parent.removeChild(parent.firstChild);
@@ -35,6 +38,7 @@ const linkItemClick = item => {
 
 const presetItemClick = preset => {
   const value = preset.target.outerText;
+  selectedPreset = value;
   PresetInput.value = value;
   links = data[value];
   updateList(links, linksList, ['links-item'], linkItemClick);
@@ -76,8 +80,34 @@ deletePreset.addEventListener('click', () => {
     });
     PresetInput.value = "";
     delete data[key];
-    console.table(data);
     updateList(Object.keys(data), presetsList, ['preset-item'], presetItemClick)
+  }
+});
+
+addLink.addEventListener('click', () => {
+  const key = LinkInput.value;
+  const preset = data[selectedPreset];
+  if (key && preset) {
+    const index = Object.keys(preset).length;
+    firebase.database().ref('/' + selectedPreset).update({
+      [index]: key,
+    });
+    LinkInput.value = "";
+    firebase.database().ref('/' + selectedPreset).once('value').then(snapshot => {
+      links = snapshot.val();
+      updateList(links, linksList, ['links-item'], linkItemClick);
+    });
+  }
+});
+
+deleteLink.addEventListener('click', () => {
+  const key = LinkInput.value;
+  const preset = data[selectedPreset];
+  if (key && preset) {
+    links = links.filter(link => link !== key);
+    firebase.database().ref('/' + key).update(links);
+    LinkInput.value = "";
+    updateList(links, linksList, ['link-item'], linkItemClick)
   }
 });
 
