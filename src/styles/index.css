@@ -52,3 +52,39 @@
   .btn-add {
     margin-right: 1vw;
   }
+
+  .presets-list {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 65vh;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, 180px);
+    grid-template-rows: repeat(auto-fill, 120px);
+  }
+
+  .preset-item {
+    width: 180px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #F7F7F8;
+    cursor: pointer;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .preset-item:hover {
+    font-size: 1.56rem;
+  }
+
+  .preset-title {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+
+  .right-column {
+    height: 100%;
+  }

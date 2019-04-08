@@ -6,7 +6,7 @@
   <title>Search</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="styles/index.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
         <button type="submit" class="btn btn-key-word">Confirm</button>
       </form>
       <form class="row-form">
-        <textarea class="materialize-textarea input" placeholder="Enter URL"></textarea>
+        <input class="input input-link" placeholder="Enter URL">
         <div class="controls">
           <button class="btn-floating waves-effect waves-light green btn-add"><i class="material-icons">add</i></button>
           <button class="btn-floating waves-effect waves-light red btn-delete"><i
@@ -28,11 +28,21 @@
       <ul class="links-list">
       </ul>
     </section>
-    <section class="column">
-
+    <section class="column right-column">
+      <form class="row-form">
+        <input type="text" class="input input-preset-title" placeholder="Enter preset title">
+        <div class="controls">
+          <a class="btn-floating waves-effect waves-light green preset-add"><i class="material-icons">add</i></a>
+          <a class="btn-floating waves-effect waves-light red preset-delete"><i
+              class="material-icons">delete</i></a>
+        </div>
+      </form>
+      <ul class="presets-list">
+      </ul>
     </section>
   </main>
-  <script src="./script.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>
