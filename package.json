@@ -1,0 +1,15 @@
+{
+  "name": "searchservice",
+  "version": "1.0.0",
+  "description": "Simple service for opening presets of links",
+  "scripts": {
+    "build": "webpack --config webpack/webpack.config.prod.js  --colors",
+    "start": "webpack-dev-server --open --config webpack/webpack.config.dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexeyTryapko/SearchService.git"
+  },
+  "author": "AlexeyTryapko",
+  "license": "MIT",
+}

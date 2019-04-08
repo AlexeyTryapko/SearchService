@@ -1,0 +1,54 @@
+  .main {
+    height: 100vh;
+    display: grid;
+    grid-gap: 20px;
+    place-items: start center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 80px 5fr;
+    padding: 30px 50px;
+    background-color: #0C2427;
+    color: #F7F7F8;
+    overflow: hidden;
+  }
+
+  .main-header {
+    grid-column: span 2;
+    align-self: end;
+  }
+
+  .column {
+    width: 100%;
+  }
+
+  .row-form {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 6fr 2fr;
+  }
+
+  .btn,
+  .input {
+    color: #F7F7F8;
+  }
+
+
+  .list-wrapper {
+    position: relative;
+  }
+
+  .links-item {
+    list-style: none;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #F7F7F8;
+  }
+
+  .links-list {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 65vh;
+  }
+
+  .btn-add {
+    margin-right: 1vw;
+  }
