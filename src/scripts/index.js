@@ -1,6 +1,6 @@
 'use strict'
 
-const data = {};
+let data = {};
 let links = [];
 let selectedPreset = '';
 
@@ -19,7 +19,7 @@ const updateList = (data, parent, classes, clickCB) => {
   while (parent.firstChild) parent.removeChild(parent.firstChild);
   data.forEach(value => {
     const li = document.createElement('li');
-    li.classList.add(...classes);
+    li.classList.add(...classes)
     li.innerHTML = value;
     li.addEventListener('click', clickCB);
     parent.appendChild(li);
@@ -57,7 +57,7 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 firebase.database().ref().on('value', snapshot => {
-  Object.assign(data, snapshot.val());
+  data = Object.assign({}, snapshot.val());
   const presetsData = Object.keys(data);
   updateList(presetsData, presetsList, ['preset-item'], presetItemClick);
 });
@@ -79,8 +79,11 @@ deletePreset.addEventListener('click', () => {
       [key]: null
     });
     PresetInput.value = "";
-    delete data[key];
-    updateList(Object.keys(data), presetsList, ['preset-item'], presetItemClick)
+    firebase.database().ref().once('value').then(snapshot => {
+      data = Object.assign({}, snapshot.val());
+      const presetsData = Object.keys(data);
+      updateList(presetsData, presetsList, ['preset-item'], presetItemClick);
+    });
   }
 });
 
