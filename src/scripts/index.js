@@ -104,10 +104,15 @@ deleteLink.addEventListener('click', () => {
   const key = LinkInput.value;
   const preset = data[selectedPreset];
   if (key && preset) {
-    links = links.filter(link => link !== key);
-    firebase.database().ref('/' + key).update(links);
+    const index = links.indexOf(key);
+    firebase.database().ref('/' + selectedPreset).update({
+      [index]: null
+    });
     LinkInput.value = "";
-    updateList(links, linksList, ['link-item'], linkItemClick)
+    firebase.database().ref('/' + selectedPreset).once('value').then(snapshot => {
+      links = snapshot.val();
+      updateList(links, linksList, ['links-item'], linkItemClick);
+    });
   }
 });
 
